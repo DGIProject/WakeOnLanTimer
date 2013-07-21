@@ -10,3 +10,4 @@ RewriteRule ^account/delete/([0-9]+)$ controler/admin/delEv.php?id=$1
 RewriteRule ^logout$ controler/logout.php
 RewriteRule ^login$ controler/login.php
 RewriteRule ^account/stat/([0-9]+)$ controler/admin/serverStatu.php?id=$1
+RewriteRule ^subscrib$ controler/subscrib.php

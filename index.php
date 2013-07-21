@@ -23,7 +23,7 @@
     <br>
     Envis de commencer ? Alors inscrivez vous sans plus tarder !<br>
 
-    <a href="subscribe">Inscription</a><br>
+    <a href="subscrib">Inscription</a><br>
     Vous êtes deja un utilisateur ? Connectez-vous !
     <br><a href="login">Connexion</a>
 
