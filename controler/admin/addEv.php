@@ -8,6 +8,7 @@
  */
 include "../../model/sql_connector.php";
 include "../../model/admin/addEv.php";
+include "../../model/makeCron.php";
 
 if ($_SESSION['wolUser'] != null)
 {
@@ -61,6 +62,7 @@ if ($_SESSION['wolUser'] != null)
     $ligneToAdd = $minutes.' '.$hours.' * '.$montsList.' '.$daysList.' php5 www/other/MServer/task.php '.$_SESSION['wolUser'].' '.$returned_ID;
     echo '<br><br>'.$ligneToAdd;
     addEvenementToFile($ligneToAdd);
+    updateCronTab();
     header('Location: account');
 }
 else

@@ -9,6 +9,7 @@
 define('NOERROR','00000');
 include '../../model/sql_connector.php';
 include '../../model/admin/editEntry.php';
+include '../../model/makeCron.php';
 
 if($_GET['id'] != null)
 {
@@ -56,6 +57,7 @@ if($_GET['id'] != null)
        $ErrorCode = updateEv($_SESSION['wolUser'],$_POST['name'],$_POST['mac'], $_POST['ip'], $_POST['port'],$_POST['dataExpire'],$configLine,$_GET['id']);
         if ($ErrorCode == NOERROR)
         {
+
            header('Location: ../../../account');
         }
         else
@@ -71,6 +73,7 @@ if($_GET['id'] != null)
     $monthListe = explode(',',$AllValues[3]);
     $dayList = explode(',',$AllValues[4]);
     $expired = getState($Ev['dateExpire']);
+    updateCronTab();
     include '../../view/admin/editEntry.php';
 
 }
