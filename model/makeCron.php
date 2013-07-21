@@ -13,11 +13,12 @@ function updateCronTab()
     fclose($cronFile);
     if( !($cronFile = fopen('../../data/cron.ccron', 'a')) ) return -1;
 
-
+    $executionRepertory = getcwd();
+    $path = substr($executionRepertory,0,strlen($executionRepertory)-15);
     $jobs = getAllCronLineFromBdd();
     foreach ($jobs as $job)
     {
-        $ligne = $job['configs'].' php5 www/other/MServer/task.php '.$job['user'].' '.$job['id']."\n";
+        $ligne = $job['configs'].' php5 '.$path.' '.$job['user'].' '.$job['id']."\n";
         fprintf( $cronFile,$ligne);
     }
     fclose($cronFile);
