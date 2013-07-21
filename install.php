@@ -93,3 +93,4 @@ CREATE TABLE IF NOT EXISTS `users` (
     $bdd->close();
 
 //After that the mysql Base may have tables created.
+//You can now use the service !
