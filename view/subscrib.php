@@ -23,5 +23,8 @@
     <br><textarea style="width: 300px;height: 100px;" name="raison"></textarea><br>
     <input type="submit" value="s'inscrire"><br>
 </form>
+<div style="border: 1px solid red; width: 300px;height: 20px;">
+    <?php echo $return; ?>
+</div>
 </body>
 </html>

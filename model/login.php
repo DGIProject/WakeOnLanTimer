@@ -10,7 +10,7 @@ function userConnect($user,$pass)
 {
 
     global $bdd;
-    $req = $bdd->prepare('SELECT COUNT(*) as exist FROM users WHERE username=:username AND pass=:pass');
+    $req = $bdd->prepare('SELECT COUNT(*) as exist FROM users WHERE username=:username AND pass=:pass AND valid=1');
     $req->execute(array('username' => $user,'pass'=>sha1($pass)));
     $rep = $req->fetch();
     if ($rep['exist'] != 0)
