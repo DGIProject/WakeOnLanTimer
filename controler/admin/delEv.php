@@ -8,7 +8,6 @@
  */
 include "../../model/sql_connector.php";
 include "../../model/admin/delEv.php";
-include "../../model/makeCron.php";
 
 if ($_GET['id'] != null && is_numeric($_GET['id']))
 {
@@ -16,7 +15,6 @@ if ($_GET['id'] != null && is_numeric($_GET['id']))
     if ($errorCode[0] == NOERROR)
     {
         echo 'L\'evenement est bien supprimé';
-        updateCronTab();
         header('Location: ../../account');
     }
     else

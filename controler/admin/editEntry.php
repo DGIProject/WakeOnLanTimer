@@ -9,7 +9,6 @@
 define('NOERROR','00000');
 include '../../model/sql_connector.php';
 include '../../model/admin/editEntry.php';
-include '../../model/makeCron.php';
 
 if($_GET['id'] != null)
 {
@@ -73,7 +72,6 @@ if($_GET['id'] != null)
     $monthListe = explode(',',$AllValues[3]);
     $dayList = explode(',',$AllValues[4]);
     $expired = getState($Ev['dateExpire']);
-    updateCronTab();
     include '../../view/admin/editEntry.php';
 
 }
