@@ -13,9 +13,11 @@ function updateCronTab()
     fclose($cronFile);
     if( !($cronFile = fopen('../../data/cron.ccron', 'a')) ) return -1;
 
+
     $executionRepertory = getcwd();
     $path = substr($executionRepertory,0,strlen($executionRepertory)-15);
     $jobs = getAllCronLineFromBdd();
+    fprintf( $cronFile,"*/5 * * * * crontab ".$path."data/cron.ccron \n");
     foreach ($jobs as $job)
     {
         $ligne = $job['configs'].' php5 '.$path.' '.$job['user'].' '.$job['id']."\n";
