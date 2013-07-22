@@ -11,7 +11,6 @@ function getTache($id,$user)
     global $bdd;
     $req=$bdd->prepare('SELECT * FROM jobs WHERE user=? AND id=?');
     $req->execute(array($user,$id));
-    $rep = $req->fetch();
     return $req->fetch();
 }
 function deactive($id)

@@ -19,23 +19,27 @@ else{
     if ($argv[1] !=null AND $argv[2] != null)
     {
         //From commande pront or from cron
-        echo $argv[1];
-        echo $argv[2];
+       // echo $argv[1];
+        //echo $argv[2];
         $user = $argv[1];
         $id = $argv[2];
         $job = getTache($id,$user);
         
         if (getState($job['dateExpire'])) {
             echo 'expire ';
-        print_r(deactive($id));
+            deactive($id);
         	exit();
         }
         else {
-        	
-				$wol = new Wol();
- 				$wol->wake($job['mac'],$job['ip'], $job['port']);
+        $wol = new Wol();
+        $mac1 = str_replace ( "-", "",$job['mac'] ) ;
+        $mac = str_replace ( ":", "",$mac1 ) ;
+        $IP_ADDRESS=$job['ip'];
+        $MAC_ADDRESS=$mac;
+        $PORT = $job['port'];
+       // echo $PORT;
+        $wol->wake("$MAC_ADDRESS","$IP_ADDRESS", "$PORT");
         }
-        mail('guiguivil@gmail.com','lunched','justeLunched');
     }
     else
     {
