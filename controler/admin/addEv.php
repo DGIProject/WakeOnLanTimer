@@ -60,7 +60,6 @@ if ($_SESSION['wolUser'] != null)
     $returned_ID= addEvenement($_SESSION['wolUser'],$_POST['name'],$_POST['mac'], $_POST['ip'], $_POST['port'],$_POST['dataExpire'],$configLine);
     $ligneToAdd = $minutes.' '.$hours.' * '.$montsList.' '.$daysList.' php5 www/other/MServer/task.php '.$_SESSION['wolUser'].' '.$returned_ID;
     echo '<br><br>'.$ligneToAdd;
-    addEvenementToFile($ligneToAdd);
     header('Location: account');
 }
 else

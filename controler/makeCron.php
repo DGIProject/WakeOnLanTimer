@@ -2,20 +2,34 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Guillaume
- * Date: 21/07/13
- * Time: 18:40
+ * Date: 22/07/13
+ * Time: 10:37
  * To change this template use File | Settings | File Templates.
  */
 
+try
+{
+    $bdd = new PDO('mysql:host=mysql2.alwaysdata.com;dbname=loquii_wol' , 'loquii_wol' , 'wol');
+}
+catch(Exception $e)
+{
+    die('Erreur : '.$e->getMessage());
+}
+
+
 function updateCronTab()
 {
-    if( !($cronFile = fopen('../../data/cron.ccron', 'w')) ) return -1;
+    $executionRepertory = $_SERVER['PHP_SELF'];
+    $path = substr($executionRepertory,0,strlen($executionRepertory)-22);
+    echo $path;
+    $filePath = $path.'data/cron.ccron';
+    echo $filePath;
+    if( !($cronFile = fopen($filePath, 'w')) ) return -1;
     fclose($cronFile);
-    if( !($cronFile = fopen('../../data/cron.ccron', 'a')) ) return -1;
+    if( !($cronFile = fopen($filePath, 'a')) ) return -1;
 
 
-    $executionRepertory = getcwd();
-    $path = substr($executionRepertory,0,strlen($executionRepertory)-15);
+
     $jobs = getAllCronLineFromBdd();
     fprintf( $cronFile,"*/5 * * * * crontab ".$path."data/cron.ccron \n");
     fprintf($cronFile, "*/4 * * * * php /home/pox/www/other/tutorials/MServer/controler/makeCron.php \n");
@@ -33,3 +47,6 @@ function getAllCronLineFromBdd()
     $req->execute();
     return $req->fetchAll();
 }
+
+updateCronTab();
+exit();
