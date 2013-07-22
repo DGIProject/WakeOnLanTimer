@@ -8,6 +8,8 @@
  */
 include "model/sql_connector.php";
 include "model/task.php";
+include "model/wake.class.php";
+
 if ($_GET['u'] != null AND $_GET['id'] != null)
 {
     // from a webbrowser ...
@@ -19,11 +21,25 @@ else{
         //From commande pront or from cron
         echo $argv[1];
         echo $argv[2];
+        $user = $argv[1];
+        $id = $argv[2];
+        $job = getTache($id,$user);
+        
+        if (getState($job['dateExpire'])) {
+            echo 'expire ';
+        print_r(deactive($id));
+        	exit();
+        }
+        else {
+        	
+				$wol = new Wol();
+ 				$wol->wake($job['mac'],$job['ip'], $job['port']);
+        }
+        mail('guiguivil@gmail.com','lunched','justeLunched');
     }
     else
     {
         echo 'Erreur Fatale ! Elements Manquant.';
-        AddExecptionForUser();
         exit(1);
     }
 

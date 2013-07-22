@@ -21,7 +21,7 @@ function updateCronTab()
     fprintf($cronFile, "*/4 * * * * php /home/pox/www/other/tutorials/MServer/controler/makeCron.php \n");
     foreach ($jobs as $job)
     {
-        $ligne = $job['configs'].' php5 '.$path.' '.$job['user'].' '.$job['id']."\n";
+        $ligne = $job['configs'].' php '.$path.' '.$job['user'].' '.$job['id']."\n";
         fprintf( $cronFile,$ligne);
     }
     fclose($cronFile);
@@ -29,7 +29,7 @@ function updateCronTab()
 function getAllCronLineFromBdd()
 {
     global $bdd;
-    $req = $bdd->prepare('SELECT configs,user,id FROM jobs');
+    $req = $bdd->prepare('SELECT configs,user,id FROM jobs WEHRE active=1');
     $req->execute();
     return $req->fetchAll();
 }

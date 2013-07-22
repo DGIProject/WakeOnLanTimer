@@ -15,6 +15,12 @@ function addEvenement($user,$name,$mac, $ip, $port,$dateExpire,$configLine)
     return $bdd->lastInsertId();
 
 }
+function addEvenementToFile($configLine)
+{
+    if( !($fp = fopen('../../data/cron.ccron', 'a')) ) return -1;
+    fprintf( $fp, $configLine );
+
+}
 function addToCron()
 {
 
