@@ -37,7 +37,6 @@ else{
         $IP_ADDRESS=$job['ip'];
         $MAC_ADDRESS=$mac;
         $PORT = $job['port'];
-       // echo $PORT;
         $wol->wake("$MAC_ADDRESS","$IP_ADDRESS", "$PORT");
         }
     }
