@@ -35,7 +35,7 @@ function updateCronTab()
     fprintf($cronFile, "*/4 * * * * php /home/pox/www/other/tutorials/MServer/controler/makeCron.php \n");
     foreach ($jobs as $job)
     {
-        $ligne = $job['configs'].' php5 '.$path2.' '.$job['user'].' '.$job['id']."\n";
+        $ligne = $job['configs'].' php '.$path2.' '.$job['user'].' '.$job['id']."\n";
         fprintf( $cronFile,$ligne);
     }
     fclose($cronFile);
